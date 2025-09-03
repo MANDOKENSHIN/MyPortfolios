@@ -1,0 +1,701 @@
+body {
+  font-family: "Montserrat","Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+  font-size: 15px;
+  letter-spacing: .05em;
+  color: #333;
+}
+
+a {
+  transition: opacity .3s;
+  text-decoration: none;
+  color: #1ca9e3;
+  font-family:cursive;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  border-style: none;
+}
+
+
+
+.pc-only {
+  display: block;
+}
+
+.sp-only {
+  display: none;
+}
+
+/*--------------------------------
+ レイアウト
+---------------------------------*/
+.wrapper {
+  padding-top: 73px;
+}
+
+.section {
+ padding:90px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:1.5s;
+}
+
+.section:nth-of-type(odd) {
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/*--------------------------------
+ 見出し
+---------------------------------*/
+.title {
+  font-family:cursive;
+  font-size: 34px;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: .05em;
+  color: #333;
+}
+
+.lead {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+/*--------------------------------
+ヘッダー
+---------------------------------*/
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 5px 10px -6px rgba(0,0,0,.1);
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.header-logo h1{
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-right: 20px;
+  letter-spacing: .05em;
+}
+
+.header-logo a {
+  color: #333;
+}
+
+.gnav-list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.gnav-item:not(:last-child) {
+  margin-right: 20px;
+}
+
+.gnav-item a {
+  position: relative;
+  font-size: 13px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 5px 0;
+  transition: .3s;
+  letter-spacing: .05em;
+  color: #333;
+}
+.gnav-item a:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  content: "";
+  transition: .3s;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background-color: #333;
+}
+
+.gnav-item a:hover:after {
+  width: 100%;
+}
+
+/*--------------------------------
+ メインビジュアル
+---------------------------------*/
+
+.mv{
+  background-color: #373737; 
+}
+
+.mv-container{
+  background-image: url(../img/MANKEN.png);
+  background-repeat:no-repeat;
+  background-size: contain;
+  background-position:center;
+  height:75vh;
+  
+}
+
+
+
+
+/*--------------------------------
+ Works
+---------------------------------*/
+#works{
+  height:600px;
+}
+
+.works-list {
+  margin-bottom: -40px;
+}
+
+
+
+.works-item {
+  margin-right:50px;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.works-item:hover {
+  opacity: .9;
+}
+
+
+
+.works-img img {
+  display: block;
+  width:424px;
+  height:auto;
+  /*取敢えず画面に表示するバナーの数を決めたため、424px（自動サイズ）より大きいものは424pxになる*/
+  border: 1px solid #e6e6e6;
+}
+
+.works-name {
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.works-info {
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+/*--------------------------------
+ Skill
+---------------------------------*/
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: -50px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 48%;
+  margin-bottom: 50px;
+}
+
+.skill-img {
+  width: 60px;
+  height: auto;
+  margin-right: 20px;
+}
+
+
+.J-skill-img {
+  width: 60px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.W-skill-img {
+  width: 60px;
+  height: auto;
+  margin-right: 20px;
+}
+
+
+.skill-img img{
+  border:1px solid #cccaca;
+  border-radius: 50%;
+}
+
+.J-skill-img img{
+  border:1px solid #cccaca;
+  border-radius:50%;
+}
+
+.skill-body {
+  flex: 1;
+}
+
+.skill-name {
+  margin-bottom: 10px;
+}
+
+.skill-text {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/*--------------------------------
+ About
+---------------------------------*/
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.profile-img {
+  width: 20%;
+  margin-right: 30px;
+  border-radius: 50%;
+}
+.profile-img img {
+  border-radius: 50%;
+}
+.profile-body {
+  flex: 1;
+}
+
+.profile-body p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.profile-body p:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+/*--------------------------------
+ Contact
+---------------------------------*/
+.contact {
+  text-align: center;
+}
+
+.contact-item:not(:last-child) {
+  margin-right: 10px;
+}
+
+.contact-text {
+  margin-top: 10px;
+}
+
+.contact-list{
+  display: flex;
+  justify-content: center;
+}
+
+.contact-list img{
+ width:30px;
+}
+
+.contact-item{
+  margin-top:5px;
+  padding-left:10px;
+}
+
+/*--------------------------------
+ ページトップ
+---------------------------------*/
+.page-top {
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  background-color: #4c4c4c;
+}
+
+.page-top .material-icons-outlined {
+  vertical-align: bottom;
+  color: #fff;
+}
+
+/*--------------------------------
+ フッター
+---------------------------------*/
+.footer {
+  padding: 30px;
+  background-color: #333;
+}
+
+.copyright {
+  font-size: 10px;
+  text-align: center;
+  color: #797979;
+}
+
+/*--------------------------------
+ 下層：Worksページ
+---------------------------------*/
+.article {
+  padding: 80px 0;
+}
+
+.article-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.article-title {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.article-body {
+  max-width: 720px;
+  margin: 0 auto;
+  margin-bottom: 80px;
+}
+
+.article-body h3 {
+  position: relative;
+  font-size: 18px;
+  margin-bottom: 5px;
+  padding-left: 1em;
+}
+
+.article-body h3:not(:first-child) {
+  margin-top: 50px;
+}
+
+.article-body h3::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  content: "";
+  border-radius: 3px;
+  background-color: #333;
+}
+
+.article-body p {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.home-link {
+  text-align: center;
+}
+
+/* ホームボタンとトップボタン */
+.button {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  color: rgb(29, 195, 241);
+  background-color: rgb(219, 197, 216);
+}
+
+.top_main {
+  bottom: 40px;
+  right: 20px;
+}
+
+.top {
+  bottom: 125px;
+  right: 20px;
+}
+
+.top p,
+.top_main {
+  font-size: 13px;
+}
+
+.top i:nth-of-type(1),
+.top_main i:nth-of-type(1) {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  font-size: 35px;
+}
+
+.top i:nth-of-type(2),
+.top_main i:nth-of-type(2) {
+  position: absolute;
+  top: 35px;
+  left: 25px;
+  font-size: 35px;
+}
+
+.top p,
+.top_main p {
+  position: absolute;
+  top: 47px;
+  left: 25px;
+}
+
+.home {
+  bottom: 40px;
+  right: 20px;
+}
+
+.home i {
+  position: absolute;
+  top: 28px;
+  left: 25px;
+  font-size: 25px;
+}
+
+.home p {
+  position: absolute;
+  top: 45px;
+  left: 20px;
+  font-size: 13px;
+}
+
+/*media Queries 767
+----------------------------------------------------*/
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+
+  .pc-only {
+    display: none;
+  }
+
+  .sp-only {
+    display: block;
+  }
+
+  /* 見出し */
+  .title {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .lead {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  /* レイアウト */
+  .wrapper {
+    padding-top: 57px;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  /* ヘッダー */
+  .header .container {
+    padding: 15px;
+  }
+
+  .header-logo h1{
+    font-size: 15px;
+    margin-right: 15px;
+  }
+
+  .gnav-item:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  .gnav-item a {
+    font-size: 10px;
+  }
+
+  .gnav-item a:after {
+    display: none;
+  }
+
+  /*  メインビジュアル */
+  
+
+  .mv-container {
+    height: 60vh;
+  }
+
+/* href="works-template.html"は省いている*/
+
+  /* Works */
+ #works{
+  height:350px;
+ }
+
+  .works-name {
+    font-size: 12px;
+  }
+
+  .works-info {
+    margin-top: 3px;
+  }
+
+
+  /* Skill */
+  .skill-list {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  .skill-item {
+    width: 100%;
+    margin-bottom: 35px;
+  }
+
+  .skill-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .skill-name {
+    margin-bottom: 5px;
+  }
+
+  .skill-text {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* About */
+  .profile {
+    display: block;
+  }
+  .profile-img {
+    width: 150px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+  }
+
+  .profile-body p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .profile-body p:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  /* フッター */
+  .footer {
+    padding: 20px;
+  }
+
+  /* 下層ページ */
+  .article {
+    padding: 50px 0;
+  }
+
+  .article-body h3 {
+    font-size: 16px;
+    padding-left: .8em;
+  }
+
+  .article-body h3:not(:first-child) {
+    margin-top: 30px;
+  }
+
+  .article-body p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+   /* ホームボタンとトップボタン */
+   .button {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: rgb(29, 195, 241);
+    background-color: rgb(219, 197, 216);
+}
+
+.top_main {
+    bottom: 30px;
+    right: 8px;
+}
+
+.top {
+    bottom: 75px;
+    right: 8px;
+}
+
+.top p,
+.top_main {
+    font-size: 7px;
+}
+
+.top i:nth-of-type(1),
+.top_main i:nth-of-type(1) {
+    position: absolute;
+    top: 11px;
+    left: 12px;
+    font-size: 20px;
+}
+
+.top i:nth-of-type(2),
+.top_main i:nth-of-type(2) {
+    position: absolute;
+    top: 18px;
+    left: 12px;
+    font-size: 20px;
+}
+
+.top p,
+.top_main p {
+    position: absolute;
+    top: 25px;
+    left: 13px;
+}
+
+.home {
+    bottom: 30px;
+    right: 8px;
+}
+
+.home i {
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    font-size: 15px;
+}
+
+.home p {
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    font-size: 7px;
+}
+
+}

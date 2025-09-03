@@ -1,0 +1,1135 @@
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+
+/* header */
+
+header a {
+    color: white;
+}
+
+.header_list {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_logo {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 12px 0 12px 20px;
+}
+
+.header_list ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_list ul li {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 12px 20px 12px 0;
+}
+
+.hamburger i {
+    display: none;
+}
+
+header img {
+    width: 100%;
+    height: 600px;
+}
+
+/* main */
+
+.wrapper {
+    padding: 0 20px;
+}
+
+.title,
+.description {
+    text-align: center;
+    padding-bottom: 35px;
+}
+
+.description {
+    letter-spacing: 3.0px;
+    line-height: 1.4;
+}
+
+.title h1 {
+    font-size: 1.7rem;
+    letter-spacing: 2.5px;
+}
+
+.title h2 {
+    font-size: 0.9rem;
+    letter-spacing: 2.8px;
+}
+
+
+
+/* food */
+#food {
+    padding: 35px 0;
+    background-color: rgb(247, 241, 240);
+}
+
+.food_shops,
+.food_shops_1,
+.food_shops_2,
+.food_shops_3 {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.food_shops_1,
+.food_shops_2,
+.food_shops_3 {
+    margin-bottom: 35px;
+}
+
+.dounoura,
+.utouku,
+.binbiya,
+.toretate_syokudou,
+.ramen_todai,
+.sunchago_burgers,
+.cafe_bubo,
+.kurukuru_naruto,
+.french_monster {
+    background-color: rgb(255, 246, 231);
+    width: 320px;
+    padding: 20px;
+}
+
+.dounoura h3,
+.utouku h3,
+.binbiya h3,
+.toretate_syokudou h3,
+.ramen_todai h3,
+.sunchago_burgers h3,
+.cafe_bubo h3,
+.kurukuru_naruto h3,
+.french_monster h3 {
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+}
+
+.dounoura span,
+.utouku span,
+.binbiya span,
+.toretate_syokudou span,
+.ramen_todai span,
+.sunchago_burgers span,
+.cafe_bubo span,
+.kurukuru_naruto span,
+.french_monster span {
+    color: rgb(249, 134, 134);
+}
+
+.shop {
+    width: 283px;
+    margin: 0 auto;
+}
+
+table td {
+    padding: 3px;
+}
+
+.time {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.time td {
+    vertical-align: middle;
+}
+
+.residence {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.residence td {
+    vertical-align: middle;
+}
+
+.item {
+    text-align: center;
+    background-color: rgb(217, 217, 217);
+}
+
+.time .content {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    line-height: 15px;
+    background-color: rgb(255, 223, 208);
+}
+
+.residence .content {
+    font-size: 0.9rem;
+    background-color: rgb(255, 223, 208);
+    line-height: 15px;
+}
+
+.one_row {
+    padding: 10px;
+}
+
+#food .review {
+    width: 283px;
+    padding: 8px;
+    line-height: 1.5;
+}
+
+#food button {
+    display: block;
+    margin: 0 auto;
+    margin-top: 35px;
+}
+
+/* 親要素は子要素の大きさ */
+.mainvisual {
+    position: relative;
+}
+
+.mainvisual:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.main {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4.6rem;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 9.5px;
+}
+
+.sub {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.6rem;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 10.8px;
+}
+
+.food_description,
+.spot_description {
+    position: absolute;
+    top: 68%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: white;
+    letter-spacing: 3px;
+    line-height: 1.6;
+    width: 100%;
+    text-align: center;
+}
+
+/* tour */
+#tour {
+    padding: 35px 0 35px 0;
+}
+
+.tour_spots {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.naruto_park,
+.otsuka_national_museum,
+.uzusio_line,
+.uchinoumi_park,
+.kazura_bridge {
+    display: flex;
+    margin-bottom: 35px;
+}
+
+.naruto_park h3,
+.otsuka_national_museum h3,
+.uzusio_line h3,
+.uchinoumi_park h3,
+.kazura_bridge h3 {
+    font-size: 1.5rem;
+}
+
+.naruto_park span,
+.otsuka_national_museum span,
+.uzusio_line span,
+.uchinoumi_park span,
+.kazura_bridge span {
+    color: rgb(249, 134, 134);
+}
+
+.spot {
+    margin-top: 10px;
+    background-color: rgb(255, 246, 231);
+    width: 480px;
+    padding: 20px 0px 80px 20px;
+}
+
+
+#tour .review {
+    width: 440px;
+    height: 200px;
+    padding: 3px;
+    line-height: 1.5;
+    letter-spacing: 1.8px;
+}
+
+.otsuka_national_museum .residence .content {
+    font-size: 0.9rem;
+    background-color: rgb(255, 223, 208);
+    letter-spacing: 0px;
+}
+
+#tour button {
+    display: flex;
+    margin: 0 auto;
+}
+
+
+/* stay */
+#stay {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    background-color: rgb(247, 241, 240);
+}
+
+.stay {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.stay h2 {
+    font-size: 1.4rem;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 2px solid rgb(255, 37, 37);
+    width: 95%;
+}
+
+.map {
+    border-right: 1px solid black;
+    margin-right: 45px;
+    padding-right: 45px;
+}
+
+.stay .map h2 {
+    width: 25%;
+}
+
+.hotels {
+    width: 38%;
+}
+
+.hotels p {
+    padding: 10px 0;
+    font-size: 1.08rem;
+    border-bottom: 1px gray solid;
+    width: 95%;
+}
+
+.luxury,
+.premier {
+    padding-bottom: 25px;
+}
+
+/* about */
+#about {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    background-image: url(./images/Subtract.png);
+    background-repeat: no-repeat;
+    background-size: 38%;
+    background-position: 100px 145px;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.profile {
+    width: 50%;
+}
+
+.career {
+    margin-bottom: 25px;
+}
+
+.career p {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.career span {
+    border: solid 3px black;
+    padding: 3px;
+    margin-right: 8px;
+}
+
+.own_image img {
+    width: 85%;
+    margin-left: 100px;
+}
+
+.philosophy {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    margin-bottom: 45px;
+}
+
+.detail {
+    width: 88%;
+    border: solid 2px rgb(253, 101, 197);
+    padding: 18px;
+    font-size: 1.03rem;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    margin-bottom: 45px;
+}
+
+button {
+    background-color: rgb(231, 222, 222);
+    padding: 18px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+button span {
+    color: rgb(255, 37, 37);
+}
+
+
+
+/* contact */
+#contact {
+    padding-top: 35px;
+    background-color: rgb(247, 241, 240);
+}
+
+form {
+    margin: 0 auto;
+}
+
+.required {
+    padding-bottom: 30px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.required span {
+    display: inline-block;
+    color: white;
+    background-color: red;
+    font-size: 13px;
+    font-weight: bolder;
+    letter-spacing: 4px;
+    padding: 5px;
+    border-radius: 10%;
+    padding-right: 1px;
+    margin-bottom: 5px;
+}
+
+.required label {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.required input,
+textarea {
+    display: block;
+    background-color: rgb(217, 217, 217);
+    padding: 7px;
+    width: 100%;
+}
+
+.required textarea {
+    height: 120px;
+}
+
+.submit {
+    font-size: 1.4rem;
+    text-align: center;
+    padding-bottom: 35px;
+}
+
+.submit input {
+    color: white;
+    background-color: rgb(29, 195, 241);
+    padding: 17px 65px;
+    border-radius: 3%;
+}
+
+
+
+/* footer */
+footer {
+    background-color: black;
+}
+
+footer p {
+    text-align: center;
+    color: white;
+    padding: 5px;
+}
+
+/* ホームボタンとトップボタン */
+.button {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    color: rgb(29, 195, 241);
+    background-color: rgb(219, 197, 216);
+}
+
+.top_main {
+    bottom: 40px;
+    right: 20px;
+}
+
+.top {
+    bottom: 125px;
+    right: 20px;
+}
+
+.top p,
+.top_main {
+    font-size: 13px;
+}
+
+.top i:nth-of-type(1),
+.top_main i:nth-of-type(1) {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    font-size: 35px;
+}
+
+.top i:nth-of-type(2),
+.top_main i:nth-of-type(2) {
+    position: absolute;
+    top: 35px;
+    left: 25px;
+    font-size: 35px;
+}
+
+.top p,
+.top_main p {
+    position: absolute;
+    top: 47px;
+    left: 25px;
+}
+
+.home {
+    bottom: 40px;
+    right: 20px;
+}
+
+.home i {
+    position: absolute;
+    top: 28px;
+    left: 25px;
+}
+
+.home p {
+    position: absolute;
+    top: 45px;
+    left: 20px;
+    font-size: 13px;
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width:375px) {
+
+    /* header */
+    .header_logo {
+        padding: 13px 0 13px 20px;
+    }
+
+    .header_list ul {
+        display: none;
+    }
+
+    .hamburger i {
+        display: block;
+        color: white;
+        padding: 13px 20px 13px 0;
+    }
+
+    header img {
+        width: 100%;
+        height: 150px;
+    }
+
+    /* main */
+    .wrapper {
+        padding: 0 20px;
+    }
+
+    .title,
+    .description {
+        text-align: center;
+        padding-bottom: 25px;
+    }
+
+    .description {
+        width: 90%;
+        margin: 0 auto;
+        font-size: 0.7rem;
+        letter-spacing: 2.0px;
+        line-height: 1.2;
+    }
+
+    .title h1 {
+        font-size: 1.0rem;
+        letter-spacing: 2.1px;
+    }
+
+    .title h2 {
+        font-size: 0.7rem;
+        letter-spacing: 2.1px;
+    }
+
+    /* FOOD/TOUR タイトルと説明文 */
+    .mainvisual {
+        position: relative;
+    }
+
+    .mainvisual:before {
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .5);
+    }
+
+    .main {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 9.5px;
+    }
+
+    .sub {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.0rem;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 10.8px;
+    }
+
+    .food_description,
+    .spot_description {
+        display: none;
+    }
+
+
+    /* food */
+    #food {
+        padding: 25px 0;
+        background-color: rgb(247, 241, 240);
+    }
+
+    .food_shops {
+        display: block;
+    }
+
+    .food_shops .utouku,
+    .food_shops .binbiya {
+        display: none;
+    }
+
+    .food_shops_1,
+    .food_shops_2,
+    .food_shops_3 {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .dounoura,
+    .utouku,
+    .binbiya,
+    .toretate_syokudou,
+    .ramen_todai,
+    .sunchago_burgers,
+    .cafe_bubo,
+    .kurukuru_naruto,
+    .french_monster {
+        width: 100%;
+        background-color: rgb(255, 246, 231);
+        padding: 10px;
+        margin-bottom: 25px;
+    }
+
+    .dounoura img,
+    .utouku img,
+    .binbiya img,
+    .toretate_syokudou img,
+    .ramen_todai img,
+    .sunchago_burgers img,
+    .cafe_bubo img,
+    .kurukuru_naruto img,
+    .french_monster img {
+        width: 83%;
+    }
+
+    .dounoura h3,
+    .utouku h3,
+    .binbiya h3,
+    .toretate_syokudou h3,
+    .ramen_todai h3,
+    .sunchago_burgers h3,
+    .cafe_bubo h3,
+    .kurukuru_naruto h3,
+    .french_monster h3 {
+        font-size: 1.0rem;
+        padding-bottom: 8px;
+    }
+
+    .dounoura span,
+    .utouku span,
+    .binbiya span,
+    .toretate_syokudou span,
+    .ramen_todai span,
+    .sunchago_burgers span,
+    .cafe_bubo span,
+    .kurukuru_naruto span,
+    .french_monster span {
+        color: rgb(249, 134, 134);
+    }
+
+    .shop {
+        width: 300px;
+        margin: 0 auto;
+        height: 400px;
+    }
+
+    table td {
+        padding: 3px;
+    }
+
+    .time {
+        width: 248px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        margin-top: 8px;
+    }
+
+    .time td {
+        vertical-align: middle;
+    }
+
+    .residence {
+        width: 248px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        margin-top: 8px;
+    }
+
+    .residence td {
+        vertical-align: middle;
+    }
+
+    .item {
+        width: 30%;
+        text-align: center;
+        background-color: rgb(217, 217, 217);
+    }
+
+    .time .content {
+        font-size: 0.6rem;
+        letter-spacing: 0.4px;
+        line-height: 8px;
+    }
+
+    .residence .content {
+        font-size: 0.6rem;
+        line-height: 8px;
+    }
+
+    .one_row {
+        padding: 10px;
+    }
+
+    #food .review {
+        font-size: 0.6rem;
+        width: 240px;
+        padding: 12px;
+        letter-spacing: 1.4;
+        line-height: 1.5;
+    }
+
+    #food button {
+        display: block;
+        margin: 0 auto;
+        margin-top: 25px;
+    }
+
+    /* tour */
+    #tour {
+        padding: 25px 0 25px 0;
+    }
+
+    #tour img {
+        width: 285px;
+        height: 190px;
+    }
+
+    .tour_spots .index{
+        display:none;
+    }
+
+    .naruto_park,
+    .otsuka_national_museum,
+    .uzusio_line,
+    .uchinoumi_park,
+    .kazura_bridge {
+        position: relative;
+    }
+
+    .naruto_park .box,
+    .otsuka_national_museum .box,
+    .uzusio_line .box,
+    .uchinoumi_park .box,
+    .kazura_bridge .box {
+        position: absolute;
+        top: 170px;
+        left: 10px;
+        z-index: -1;
+    }
+
+    .tour_spots {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .naruto_park,
+    .otsuka_national_museum,
+    .uzusio_line,
+    .uchinoumi_park,
+    .kazura_bridge {
+        display: block;
+        margin-bottom: 270px;
+    }
+
+    .naruto_park h3,
+    .otsuka_national_museum h3,
+    .uzusio_line h3,
+    .uchinoumi_park h3,
+    .kazura_bridge h3 {
+        font-size: 1.0rem;
+    }
+
+    .spot {
+        margin-top: 10px;
+        background-color: rgb(255, 246, 231);
+        width: 300px;
+        padding: 20px 0px 80px 20px;
+    }
+
+    #tour .review {
+        font-size: 0.7rem;
+        width: 270px;
+        height: 140px;
+        line-height: 1.5;
+        letter-spacing: 1.8px;
+    }
+
+    #tour .time,
+    #tour .residence {
+        width: 260px;
+    }
+
+    .otsuka_national_museum .residence .content,
+    .uzusio_line .residence .content,
+    .kazura_bridge .residence .content {
+        font-size: 0.5rem;
+        background-color: rgb(255, 223, 208);
+        letter-spacing: 1px;
+        
+    }
+
+    #tour button {
+        display: block;
+        margin: 0 auto;
+    }
+
+
+    /* stay */
+    #stay {
+        padding: 25px 0;
+        background-color: rgb(247, 241, 240);
+    }
+
+    .stay {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .stay h2 {
+        font-size: 1.0rem;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        border-bottom: 2px solid rgb(255, 37, 37);
+    }
+
+    .map {
+        border-right: none;
+        margin-right: 0px;
+        padding-right: 0px;
+    }
+
+    .stay .map h2 {
+        width: 50%;
+        margin: 25px auto;
+    }
+
+    .map iframe {
+        width: 273px;
+    }
+
+    .hotels {
+        padding-top: 25px;
+        width: 80%;
+        margin: 0 auto;
+        padding-left: 28px;
+    }
+
+    .hotels h2 {
+        width: 91%;
+    }
+
+    .hotels p {
+        padding: 10px 0;
+        font-size: 0.7rem;
+        border-bottom: 1px gray solid;
+        width: 91%;
+    }
+
+    .luxury,
+    .premier {
+        padding-bottom: 25px;
+    }
+
+    /* about */
+    #about {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        background-image: none;
+        background-size: 0%;
+    }
+
+    .about {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .profile {
+        width: 100%;
+    }
+
+    .career {
+        margin-bottom: 25px;
+    }
+
+    .career p {
+        font-size: 0.7rem;
+        font-weight: bold;
+    }
+
+    .career span {
+        border: solid 2px black;
+        padding: 3px;
+        margin-right: 8px;
+    }
+
+    .own_image {
+        display: none;
+    }
+
+    .philosophy {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+        margin-bottom: 25px;
+    }
+
+    .detail {
+        width: 100%;
+        border: solid 2px rgb(253, 101, 197);
+        padding: 9px;
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+        line-height: 1.4;
+        margin-bottom: 25px;
+    }
+
+    button {
+        display: block;
+        background-color: rgb(231, 222, 222);
+        padding: 12px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        margin: 0 auto;
+    }
+
+    button span {
+        color: rgb(255, 37, 37);
+    }
+
+    /* contact */
+    #contact {
+        padding-top: 25px;
+        background-color: rgb(247, 241, 240);
+    }
+
+    .required {
+        padding-bottom: 20px;
+        width: 80%;
+    }
+
+    .required span {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        padding: 3px;
+    }
+
+    .required label {
+        font-size: 0.7rem;
+    }
+
+    .required input,
+    textarea {
+        width: 100%;
+    }
+
+    .required textarea {
+        height: 100px;
+    }
+
+    .submit {
+        font-size: 0.9rem;
+        text-align: center;
+        padding-bottom: 25px;
+    }
+
+    .submit input {
+        padding: 12px 40px;
+    }
+
+    footer p {
+        font-size: 0.7rem;
+    }
+
+    /* ホームボタンとトップボタン */
+    .button {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: rgb(29, 195, 241);
+        background-color: rgb(219, 197, 216);
+    }
+
+    .top_main {
+        bottom: 30px;
+        right: 8px;
+    }
+
+    .top {
+        bottom: 75px;
+        right: 8px;
+    }
+
+    .top p,
+    .top_main {
+        font-size: 7px;
+    }
+
+    .top i:nth-of-type(1),
+    .top_main i:nth-of-type(1) {
+        position: absolute;
+        top: 11px;
+        left: 12px;
+        font-size: 20px;
+    }
+
+    .top i:nth-of-type(2),
+    .top_main i:nth-of-type(2) {
+        position: absolute;
+        top: 18px;
+        left: 12px;
+        font-size: 20px;
+    }
+
+    .top p,
+    .top_main p {
+        position: absolute;
+        top: 25px;
+        left: 13px;
+    }
+
+    .home {
+        bottom: 30px;
+        right: 8px;
+    }
+
+    .home i {
+        position: absolute;
+        top: 15px;
+        left: 13px;
+    }
+
+    .home p {
+        position: absolute;
+        top: 25px;
+        left: 10px;
+        font-size: 7px;
+    }
+
+
+
+}
