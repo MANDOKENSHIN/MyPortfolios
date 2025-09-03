@@ -1,0 +1,321 @@
+/* renderSuccess()から呼び出すCSS*/
+
+/* リセットCSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ボディ全体のスタイル */
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* メインコンテナ（カード型） */
+.success-container {
+    background: white;
+    border-radius: 15px;
+    padding: 50px 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    animation: slideUp 0.5s ease-out;
+}
+
+/* アニメーション */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 見出し */
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    font-weight: 700;
+    position: relative;
+}
+
+/* チェックマークアイコン（成功を示す） */
+h1::before {
+    content: "✓";
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    color: white;
+    font-size: 30px;
+    line-height: 60px;
+    margin: 0 auto 20px;
+    animation: checkmark 0.6s ease-out 0.3s both;
+}
+
+@keyframes checkmark {
+    0% {
+        transform: scale(0) rotate(-45deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* お問い合わせ番号セクション */
+.contact-number {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    border: 2px solid #e1e8ed;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-number::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.contact-number p:first-child {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.contact-number .number {
+    font-size: 2rem;
+    color: #333;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.contact-number .number strong {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 通常のパラグラフ */
+p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+/* 成功メッセージ */
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+    border: 1px solid #c3e6cb;
+    font-size: 1.05rem;
+}
+
+/* 警告メッセージ */
+.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+    border: 1px solid #ffeaa7;
+    font-size: 1rem;
+    text-align: left;
+    position: relative;
+    padding-left: 50px;
+}
+
+.warning::before {
+    content: "⚠";
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: #f39c12;
+}
+
+.warning strong {
+    color: #764ba2;
+    font-weight: 600;
+}
+
+/* リンクボタン */
+a {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+a:active {
+    transform: translateY(0);
+}
+
+/* HTMLに.success-containerクラスがない場合の直接スタイル */
+body > h1 {
+    background: white;
+    border-radius: 15px 15px 0 0;
+    padding: 30px 40px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    width: 100%;
+    margin: 0;
+}
+
+body > .contact-number,
+body > p,
+body > .warning {
+    background: white;
+    max-width: 600px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+body > .contact-number {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+    margin: 0 auto;
+    width: calc(100% - 80px);
+    max-width: 520px;
+}
+
+body > p:last-child {
+    background: white;
+    border-radius: 0 0 15px 15px;
+    padding-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .success-container,
+    body > h1,
+    body > p,
+    body > .warning {
+        padding: 30px 25px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h1::before {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        line-height: 50px;
+    }
+    
+    .contact-number {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .contact-number .number {
+        font-size: 1.5rem;
+    }
+    
+    p {
+        font-size: 1rem;
+    }
+    
+    a {
+        padding: 12px 30px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .contact-number .number {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+    
+    .warning {
+        padding-left: 20px;
+        font-size: 0.9rem;
+    }
+    
+    .warning::before {
+        display: none;
+    }
+}
+
+/* プリント時のスタイル */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+    
+    .success-container {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    a {
+        background: none;
+        color: #667eea;
+        border: 2px solid #667eea;
+    }
+}
