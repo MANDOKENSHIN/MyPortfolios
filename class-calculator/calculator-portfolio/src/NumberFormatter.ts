@@ -46,10 +46,10 @@ export class NumberFormatter {
     private toStandardNotation(n: number): string {
         let resultString = n.toString();
 
-        // // JSの自動変換により科学記法が含まれる場合(e-8より大きくe-6より小さい数)
-        // if (n > 1e-8 && n < 1e-6) {
-        //     return n.toFixed(this.maxDigits - 1).replace(/\.?0+$/, '');
-        // }
+        // "e-7"には科学記法を適用させない
+        if (resultString.includes("e-7")) {
+            resultString = n.toFixed(7);
+        }
 
         // 末尾0を除去
         resultString = resultString.replace(/(\.\d*?)0+$/, '$1');

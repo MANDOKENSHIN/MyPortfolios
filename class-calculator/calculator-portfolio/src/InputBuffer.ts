@@ -67,6 +67,13 @@ export class InputBuffer {
     }
 
     /**
+     * マイナス入力のみかを判断
+     */
+    public isSetNegative(): boolean {
+        return this.value === "-";
+    }
+
+    /**
      * 入力数字をクリア
      */
     public clear(): void {

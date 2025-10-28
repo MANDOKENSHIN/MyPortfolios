@@ -23,6 +23,7 @@ describe("KeyMapperクラスのテスト", () => {
 
     // resolve();のテスト
     describe("resolve();のテスト", () => {
+        
         // 数字キーが正しく処理されるか
         describe("数字キーが正しく処理されるか", () => {
             test("0-9の各トークンが正しく返されているか", () => {
@@ -90,6 +91,7 @@ describe("KeyMapperクラスのテスト", () => {
             });
         });
 
+        // 該当するdata-keyがない場合はnullを返されているか
         describe("該当するdata-keyがない場合はnullを返されているか", () => {
             test("data-keyがセットされていない場合はnullが返されているか", () => {
                 const element = document.createElement("button");

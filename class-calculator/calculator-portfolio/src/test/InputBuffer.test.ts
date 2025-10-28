@@ -106,6 +106,19 @@ describe("InputBufferクラスのテスト", () => {
         expect(inputBuffer.getValue()).toBe("");
     });
 
+    // isSetNegative();のテスト
+    describe("isSetNegative();のテスト", () => {
+        test("valueにマイナス以外の値があるときはfalseになるか", () => {
+            inputBuffer.setValue("12345678");
+            expect(inputBuffer.isSetNegative()).toBe(false);
+        });
+
+        test("valueにマイナスのみ存在する場合はtrueになるか", () => {
+            inputBuffer.setValue("-");
+            expect(inputBuffer.isSetNegative()).toBe(true);
+        });
+    });
+
     // toNumber();のテスト
     describe("toNumber();のテスト", () => {
         test("valueが空のときは0を返す", () => {

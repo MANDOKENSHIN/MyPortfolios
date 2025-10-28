@@ -8,6 +8,7 @@ import { DomDisplay } from "../DomDisplay";
 describe("DomDisplayクラスのテスト", () => {
     let domDisplay: DomDisplay;
     let getElementByIdScreen: HTMLElement;
+
     // 各テスト前に仮想DOM・インスタンスを生成
     beforeEach(() => {
         document.body.innerHTML = `<div class="output" id="screen">0</div>`;
@@ -32,12 +33,38 @@ describe("DomDisplayクラスのテスト", () => {
 
     // render();のテスト
     describe("render();のテスト", () => {
-        test("div要素が入っている場合、仮想DOMのHTMLが書き換えられているか", () => {
+        test("div要素がセットされている場合、仮想DOMのHTMLが書き換えられているか", () => {
             domDisplay.render("12345");
             expect(domDisplay.getEl().textContent).toBe("12345");
         });
 
+        test("div要素がセットされていない場合、エラーがthrowされるか", () => {
+            // <p>要素で仮想DOM・インスタンスを上書き
+            document.body.innerHTML = `<p class="output" id="screen">0</p>`;
+            getElementByIdScreen = document.getElementById("screen")!;
+            domDisplay = new DomDisplay(getElementByIdScreen);
+            expect(() => {
+                domDisplay.render("12345");
+            }).toThrow("div要素を取得していません。");
+        });
+
     });
 
+    // renderError();のテスト
+    describe("renderError();のテスト", () => {
+        test("div要素がセットされている場合、仮想DOMのHTMLが書き換えられているか", () => {
+            domDisplay.renderError("Error");
+            expect(domDisplay.getEl().textContent).toBe("Error");
+        });
 
+        test("div要素がセットされていない場合、エラーがthrowされるか", () => {
+            // <p>要素で仮想DOM・インスタンスを上書き
+            document.body.innerHTML = `<p class="output" id="screen">0</p>`;
+            getElementByIdScreen = document.getElementById("screen")!;
+            domDisplay = new DomDisplay(getElementByIdScreen);
+            expect(() => {
+                domDisplay.renderError("Error");
+            }).toThrow("div要素を取得していません。");
+        });
+    });
 });

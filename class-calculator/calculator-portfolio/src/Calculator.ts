@@ -91,6 +91,8 @@ export class Calculator {
         if (this.state === Calcstate.Ready) {
             this.state = Calcstate.InputtingFirst;
         }
+        // 第一オペラント文字列入力中かつ8文字入力済みの場合は処理終了
+        if (this.state === Calcstate.InputtingFirst && this.buffer.getValue().replace(/[-]/g, "").length === 8) return;
         // 計算結果表示後 or エラーの場合は全クリアして第一オペラント文字列入力中の状態へ
         if (this.state === Calcstate.ResultShown || this.state === Calcstate.Error) {
             this.handleAllClear();
@@ -107,15 +109,16 @@ export class Calculator {
      * @param op - 入力された演算子
      */
     public handleOperator(op: Operation): void {
-        // エラー状態の場合は無視
-        if (this.state === Calcstate.Error) return;
-        // 初期状態でマイナスが押された場合は負の数入力とみなす
-        if (this.state === Calcstate.Ready && op === Operation.Subtract) {
+        // 初期状態やエラー状態でマイナスが押された場合は負の数入力とみなす
+        if ((this.state === Calcstate.Ready && op === Operation.Subtract)
+            || (this.state === Calcstate.Error && op === Operation.Subtract)) {
             this.buffer.setNegative();
             this.state = Calcstate.InputtingFirst;
             this.display.render("-");
             return;
         }
+        // エラー状態の場合は無視
+        if (this.state === Calcstate.Error) return;
         // 初期状態の場合は無視（マイナス以外）
         if (this.state === Calcstate.Ready) return;
 
@@ -136,6 +139,8 @@ export class Calculator {
 
         // 第一オペランド入力後
         if (this.state === Calcstate.InputtingFirst) {
+            // マイナスのみ入力されている場合は処理を修了
+            if (this.buffer.isSetNegative()) return;
             this.state = Calcstate.OperatorEntered;
             this.left = this.buffer.toNumber();
             this.buffer.clear();
@@ -146,17 +151,15 @@ export class Calculator {
 
         // 第二オペランド入力後
         try {
-            if (this.state === Calcstate.InputtingSecond && this.left !== null && this.operator !== null) {
+            if (this.state === Calcstate.InputtingSecond) {
                 const right = this.buffer.toNumber();
-                const result = this.evaluator.compute(this.left, this.operator, right);
+                const result = this.evaluator.compute(this.left!, this.operator!, right);
                 this.buffer.clear();
                 const formatted = this.formatter.formatForDisplay(result);
                 this.left = Number(formatted);
                 this.display.render(formatted);
-            } else {
-                throw new Error("不正な状態です");
             }
-        } catch (error:unknown) {
+        } catch (error: unknown) {
             if (error instanceof DivisionByZeroError) {
                 this.handleError(Config.ERROR_MESSAGE);
                 console.error("エラー", error);
@@ -199,19 +202,17 @@ export class Calculator {
 
         // 第二オペランド入力後の場合
         try {
-            if (this.state === Calcstate.InputtingSecond && this.left !== null && this.operator !== null) {
+            if (this.state === Calcstate.InputtingSecond) {
                 this.state = Calcstate.ResultShown;
                 const right = this.buffer.toNumber();
-                const result = this.evaluator.compute(this.left, this.operator, right);
+                const result = this.evaluator.compute(this.left!, this.operator!, right);
                 this.buffer.clear();
                 const formatted = this.formatter.formatForDisplay(result);
                 this.left = Number(formatted);
                 this.display.render(formatted);
                 this.operator = null;
-            } else {
-                throw new Error("不正な状態です");
             }
-        } catch (error:unknown) {
+        } catch (error: unknown) {
             if (error instanceof DivisionByZeroError) {
                 this.handleError(Config.ERROR_MESSAGE);
                 console.error("エラー:", error);
@@ -231,6 +232,14 @@ export class Calculator {
         this.operator = null;
         this.buffer.clear();
         this.display.render("0");
+    }
+
+    /**
+     * 状態をセット
+     * @param state - セットしたい状態
+     */
+    public setState(state: Calcstate): void {
+        this.state = state;
     }
 
     /**
@@ -269,7 +278,7 @@ export class Calculator {
      * 演算子をセット
      * @param left - セットしたい演算子
      */
-    public setOperator(operator:Operation): void {
+    public setOperator(operator: Operation | null): void {
         this.operator = operator;
     }
 
@@ -303,10 +312,10 @@ export class Calculator {
      */
     private getOperatorSymbol(op: Operation): string {
         switch (op) {
-            case Operation.Add: return "+";  // Operation.Add
-            case Operation.Subtract: return "-";  // Operation.Subtract
-            case Operation.Multiply: return "×";  // Operation.Multiply
-            case Operation.Divide: return "÷";  // Operation.Divide
+            case Operation.Add: return "+";
+            case Operation.Subtract: return "-";
+            case Operation.Multiply: return "×";
+            case Operation.Divide: return "÷";
             default: return "";
         }
     }

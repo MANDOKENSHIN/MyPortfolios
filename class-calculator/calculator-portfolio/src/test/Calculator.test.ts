@@ -33,6 +33,9 @@ describe("Calculatorクラスのテスト", () => {
     beforeEach(() => {
         display = new MockDisplay();
         calculator = new Calculator(display);
+        calculator.setState(Calcstate.Ready);
+        calculator.setLeft(null);
+        calculator.setOperator(null);
     });
 
     // 初期状態のテスト
@@ -44,19 +47,29 @@ describe("Calculatorクラスのテスト", () => {
         test("calculatorインスタンスが生成されているか", () => {
             expect(calculator).toBeInstanceOf(Calculator);
         });
+
+        test("初期状態にセットされているか", () => {
+            expect(calculator.getState()).toBe(Calcstate.Ready);
+        });
+
+        test("演算子なしにセットされているか", () => {
+            expect(calculator.getLeft()).toBe(null);
+        });
+
+        test("左オペラントなしにセットされているか", () => {
+            expect(calculator.getOperator()).toBe(null);
+        });
     });
 
     //数字入力のテスト 
     describe("数字入力（handleDigit(),handleDecimalPoint()）のテスト", () => {
         test("1桁の数字を入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 5 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             expect(display.renderText).toBe("5");
         });
 
         test("複数桁の数字を入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 1 });
             calculator.handle({ kind: "digit", value: 2 });
             calculator.handle({ kind: "digit", value: 3 });
@@ -66,7 +79,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("0を先頭に表示できないか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 0 });
             calculator.handle({ kind: "digit", value: 1 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
@@ -74,7 +86,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("最大桁数を超える入力は無視されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             for (let i = 0; i < 15; i++) {
                 calculator.handle({ kind: "digit", value: 9 });
             }
@@ -83,7 +94,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("少数点を含んだ8桁数字を入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 3 });
             calculator.handle({ kind: "decimal" });
             calculator.handle({ kind: "digit", value: 1 });
@@ -97,8 +107,36 @@ describe("Calculatorクラスのテスト", () => {
             expect(display.renderText).toBe("3.1415926");
         });
 
+        test("第一オペラント文字列入力中かつ8文字入力済みの場合は処理終了となるか", () => {
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "decimal" });
+            expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
+            expect(display.renderText).toBe("11111111");
+        });
+
+        test("第一オペラント文字列入力中かつ8文字入力済み（マイナスは無視）の場合は処理終了となるか", () => {
+            calculator.handle({ kind: "op", value: Operation.Subtract });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "digit", value: 1 });
+            calculator.handle({ kind: "decimal" });
+            expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
+            expect(display.renderText).toBe("-11111111");
+        });
+
         test("エラー状態から数字入力で全クリアされるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             // 0で割り算を試みてエラー状態にする
             calculator.handle({ kind: "digit", value: 5 });
             calculator.handle({ kind: "op", value: Operation.Divide });
@@ -113,7 +151,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("エラー状態から小数点入力で全クリアされるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             // 0で割り算を試みてエラー状態にする
             calculator.handle({ kind: "digit", value: 5 });
             calculator.handle({ kind: "op", value: Operation.Divide });
@@ -128,7 +165,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("小数点を複数回入力できないか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 3 });
             calculator.handle({ kind: "decimal" });
             calculator.handle({ kind: "decimal" });
@@ -138,7 +174,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("小数点を先頭に入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "decimal" });
             calculator.handle({ kind: "digit", value: 3 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
@@ -146,7 +181,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("第一オペラント入力→イコール押下後に数字を入力すると続けて入力されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 4 });
             calculator.handle({ kind: "equal" });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
@@ -158,7 +192,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("計算結果表示後に数字入力で全てクリアされるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 2 });
             calculator.handle({ kind: "op", value: Operation.Multiply });
             calculator.handle({ kind: "digit", value: 3 });
@@ -172,7 +205,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("計算結果表示後に小数点入力で全てクリアされるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 2 });
             calculator.handle({ kind: "op", value: Operation.Multiply });
             calculator.handle({ kind: "digit", value: 3 });
@@ -185,7 +217,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("演算子入力直後に小数点入力は無視されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 8 });
             calculator.handle({ kind: "op", value: Operation.Add });
             calculator.handle({ kind: "decimal" });
@@ -194,7 +225,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("マイナス入力直後に数字入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "op", value: Operation.Subtract });
             calculator.handle({ kind: "digit", value: 5 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
@@ -202,18 +232,23 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("マイナス入力直後に小数点入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "op", value: Operation.Subtract });
             calculator.handle({ kind: "decimal" });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             expect(display.renderText).toBe("-0.");
+        });
+
+        test("マイナス入力後の演算子入力は無視されるか", () => {
+            calculator.handle({ kind: "op", value: Operation.Subtract });
+            calculator.handle({ kind: "op", value: Operation.Add });
+            expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
+            expect(display.renderText).toBe("-");
         });
     });
 
     // 演算子入力のテスト
     describe("演算子入力（handleOperator()）のテスト", () => {
         test("第一オペラント入力後に演算子を入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 9 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "op", value: Operation.Add });
@@ -222,7 +257,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("演算子入力直後に別の演算子を入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 9 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "op", value: Operation.Add });
@@ -233,21 +267,18 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("初期状態でマイナス演算子を入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "op", value: Operation.Subtract });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             expect(display.renderText).toBe("-");
         });
 
         test("初期状態でマイナス以外の演算子入力は無視されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "op", value: Operation.Add });
             expect(calculator.getState()).toBe(Calcstate.Ready);
             expect(display.renderText).toBe("");
         });
 
         test("小数点入力後に演算子を入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 2 });
             calculator.handle({ kind: "decimal" });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
@@ -257,7 +288,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("第二オペラント入力後に演算子を入力すると計算が実行されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 8 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "op", value: Operation.Add });
@@ -271,7 +301,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("計算結果表示後に演算子を入力できるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 6 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "op", value: Operation.Subtract });
@@ -289,7 +318,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("エラー状態では演算子入力は無視されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             // 0で割り算を試みてエラー状態にする
             calculator.handle({ kind: "digit", value: 5 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
@@ -309,15 +337,12 @@ describe("Calculatorクラスのテスト", () => {
     // イコール入力のテスト
     describe("イコール入力（handleEqual()）のテスト", () => {
         test("初期状態でイコール入力は無視されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "equal" });
             expect(calculator.getState()).toBe(Calcstate.Ready);
             expect(display.renderText).toBe("");
         });
 
         test("第一オペラント入力後にイコール入力は無視されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 3 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "equal" });
@@ -326,7 +351,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("結果表示後にイコール入力は無視されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 4 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "op", value: Operation.Add });
@@ -343,7 +367,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("エラー状態ではイコール入力は無視されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             // 0で割り算を試みてエラー状態にする
             calculator.handle({ kind: "digit", value: 5 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
@@ -363,7 +386,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("演算子入力後にイコールが入力されれば最後の数字が表示されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 7 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "op", value: Operation.Multiply });
@@ -376,7 +398,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("第二オペラント入力後にイコールが入力されれば計算が実行されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 9 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "op", value: Operation.Subtract });
@@ -391,7 +412,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("負の数の計算が正しく行われるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "op", value: Operation.Subtract });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "digit", value: 3 });
@@ -411,7 +431,6 @@ describe("Calculatorクラスのテスト", () => {
     // クリア入力のテスト
     describe("クリア入力（handleAllClear()）のテスト", () => {
         test("初期状態でクリア入力は無視されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "clear" });
             expect(calculator.getState()).toBe(Calcstate.Ready);
             expect(calculator.getLeft()).toBe(null);
@@ -420,7 +439,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("第一オペラント入力後にクリア入力で初期状態に戻るか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 5 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             expect(display.renderText).toBe("5");
@@ -433,7 +451,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("演算子入力後にクリア入力で初期状態に戻るか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 6 });
             calculator.handle({ kind: "op", value: Operation.Multiply });
             expect(calculator.getState()).toBe(Calcstate.OperatorEntered);
@@ -447,7 +464,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("第二オペラント入力後にクリア入力で初期状態に戻るか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 7 });
             calculator.handle({ kind: "op", value: Operation.Add });
             calculator.handle({ kind: "digit", value: 4 });
@@ -461,7 +477,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("エラー状態でクリア入力で初期状態に戻るか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             // 0で割り算を試みてエラー状態にする
             calculator.handle({ kind: "digit", value: 5 });
             calculator.handle({ kind: "op", value: Operation.Divide });
@@ -478,7 +493,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("計算結果表示後にクリア入力で初期状態に戻るか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 8 });
             calculator.handle({ kind: "op", value: Operation.Subtract });
             calculator.handle({ kind: "digit", value: 3 });
@@ -494,10 +508,18 @@ describe("Calculatorクラスのテスト", () => {
         });
     });
 
+    // handleError();のテスト
+    describe("handleError();のテスト", () => {
+        test("エラー状態がセットされ、エラーが入力される", () => {
+            calculator.handleError("エラー")
+            expect(calculator.getState()).toBe(Calcstate.Error);
+            expect(display.renderText).toBe("エラー");
+        });
+    });
+
     // その他のテスト
     describe("その他のテスト", () => {
         test("計算結果を使った計算ができるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 2 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "op", value: Operation.Add });
@@ -527,11 +549,10 @@ describe("Calculatorクラスのテスト", () => {
         // main.tsでキャッチできるため以下は安心
         test("handle()の異常系", () => {
             const invalidToken = { kind: 'unknown' as any, value: 0 };
-            expect(() => calculator.handle(invalidToken)).toThrow();
+            expect(() => calculator.handle(invalidToken)).toThrow(`予期せぬエラーが発生しました。${invalidToken}`);
         });
 
         test("8桁を超える大きな数の計算結果は、科学記法が適用されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "digit", value: 9 });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "digit", value: 9 });
@@ -551,7 +572,6 @@ describe("Calculatorクラスのテスト", () => {
         });
 
         test("8桁を超える小さな数の計算結果は、科学記法が適用されるか", () => {
-            expect(calculator.getState()).toBe(Calcstate.Ready);
             calculator.handle({ kind: "decimal" });
             expect(calculator.getState()).toBe(Calcstate.InputtingFirst);
             calculator.handle({ kind: "digit", value: 0 });
