@@ -3,6 +3,9 @@ import type { IDisplay } from "../IDisplay";
 import { Operation } from "../Operation";
 import { Calcstate } from "../CalcState";
 
+/**
+ * DOM代わりのモック作成用のクラス
+ */
 class MockDisplay implements IDisplay {
     /** 取得したテキスト */
     public renderText: string = "";
