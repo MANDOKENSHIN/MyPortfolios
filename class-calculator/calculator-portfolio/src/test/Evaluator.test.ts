@@ -1,6 +1,6 @@
+import { DivisionByZeroError } from "../DivisionByZeroError";
 import { Evaluator } from "../Evaluator";
 import { Operation } from "../Operation";
-import { DivisionByZeroError } from "../DivisionByZeroError";
 
 // Evaluatorクラスのテスト
 describe("Evaluatorクラスのテスト", () => {
@@ -18,6 +18,7 @@ describe("Evaluatorクラスのテスト", () => {
         });
     });
 
+    // 加算ができるか
     describe("加算ができるか", () => {
         test("3 + 5", () => {
             expect(evaluator.compute(3, Operation.Add, 5)).toBe(8);
@@ -32,6 +33,7 @@ describe("Evaluatorクラスのテスト", () => {
         });
     });
 
+    // 減算ができるか
     describe("減算ができるか", () => {
         test("5 - 1", () => {
             expect(evaluator.compute(5, Operation.Subtract, 1)).toBe(4);
@@ -46,6 +48,7 @@ describe("Evaluatorクラスのテスト", () => {
         });
     });
 
+    // 乗算ができるか
     describe("乗算ができるか", () => {
         test("4 × 5", () => {
             expect(evaluator.compute(4, Operation.Multiply, 5)).toBe(20);
@@ -56,10 +59,11 @@ describe("Evaluatorクラスのテスト", () => {
         });
 
         test("-14.3 × 4", () => {
-            expect(evaluator.compute(-14.3, Operation.Multiply, 4)).toBe(57.2);
+            expect(evaluator.compute(-14.3, Operation.Multiply, 4)).toBe(-57.2);
         });
     });
 
+    // 除算ができるか
     describe("除算ができるか", () => {
         test("4 ÷ 2", () => {
             expect(evaluator.compute(4, Operation.Divide, 2)).toBe(2);
@@ -73,16 +77,28 @@ describe("Evaluatorクラスのテスト", () => {
             expect(evaluator.compute(-645, Operation.Divide, 3)).toBe(-215);
         });
     });
-    // Calculator.tsでキャッチできるため以下は安心
+
+    // 0除算の際にはDivisionByZeroErrorが投げられてるか(Calculator.tsでキャッチできるため以下は安心)
     describe("0除算の際にはDivisionByZeroErrorが投げられてるか", () => {
-        expect(() => {
-            evaluator.compute(5, Operation.Divide, 0);
-        }).toThrow(DivisionByZeroError);
+        test("5 ÷ 0", () => {
+            expect(() => {
+                evaluator.compute(5, Operation.Divide, 0);
+            }).toThrow(DivisionByZeroError);
+        });
+
+        test("5 ÷ 0", () => {
+            expect(() => {
+                evaluator.compute(5, Operation.Divide, 0);
+            }).toThrow("Divide by zero");
+        });
     });
 
-    test("浮動小数点数の計算精度", () => {
-        // JavaScriptの浮動小数点誤差を考慮
-        expect(evaluator.compute(0.1, Operation.Add, 0.2)).toBeCloseTo(0.3);
-        expect(evaluator.compute(0.3, Operation.Subtract, 0.1)).toBeCloseTo(0.2);
+    // その他のテスト
+    describe("その他のテスト", () => {
+        test("丸め誤差を許容した計算ができているか", () => {
+            // JavaScriptの浮動小数点誤差を考慮
+            expect(evaluator.compute(0.1, Operation.Add, 0.2)).toBeCloseTo(0.3);
+            expect(evaluator.compute(0.3, Operation.Subtract, 0.1)).toBeCloseTo(0.2);
+        });
     });
 });

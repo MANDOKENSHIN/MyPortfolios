@@ -19,6 +19,7 @@ describe("NumberFormatterクラスのテスト", () => {
 
     // formatForDisplay();のテスト
     describe("formatForDisplay();のテスト", () => {
+
         // 計算結果が8桁を超える場合のテスト
         describe("計算結果が8桁を超える場合、科学記法で表されるか", () => {
             test("計算結果が正の整数で99999999を超える場合、小数点以下が7桁の科学記法で表されるか", () => {
@@ -54,6 +55,18 @@ describe("NumberFormatterクラスのテスト", () => {
 
             test("計算結果が少数で8桁を超えない場合、科学記法なしで表示されるか", () => {
                 expect(numberFormatter.formatForDisplay(-9.9999999)).toBe("-9.9999999");
+            });
+
+            test("計算結果が0.0000001〜0.0000009には科学記法が適用されないか", () => {
+                expect(numberFormatter.formatForDisplay(0.0000001)).not.toBe("1e-7");
+                expect(numberFormatter.formatForDisplay(0.0000002)).not.toBe("2e-7");
+                expect(numberFormatter.formatForDisplay(0.0000003)).not.toBe("3e-7");
+                expect(numberFormatter.formatForDisplay(0.0000004)).not.toBe("4e-7");
+                expect(numberFormatter.formatForDisplay(0.0000005)).not.toBe("5e-7");
+                expect(numberFormatter.formatForDisplay(0.0000006)).not.toBe("6e-7");
+                expect(numberFormatter.formatForDisplay(0.0000007)).not.toBe("7e-7");
+                expect(numberFormatter.formatForDisplay(0.0000008)).not.toBe("8e-7");
+                expect(numberFormatter.formatForDisplay(0.0000009)).not.toBe("9e-7");
             });
 
             test("計算結果が少数で末尾が0になった場合、0が取り除かれるか", () => {
